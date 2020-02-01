@@ -5,35 +5,36 @@
 
 
 
-
-void merge(int arr[],int l,int k,int r)
+void merge(int arr[],int low,int mid,int high)
 {
-  int b[10000];
-  int i = l;
-  int j = k + 1;
-  int x = l;
-  while(i <= k && j <= r)
+  int temp[100000];
+  int i = low;
+  int j = mid + 1;
+  int x = low;
+
+  while(i <= mid && j <= high)
   {
     if(arr[i] <= arr[j])
     {
-      b[x++] = arr[i++];
+      temp[x++] = arr[i++];
     }
     else 
     {
-      b[x++] = arr[j++];
+      temp[x++] = arr[j++];
     }
   }
-  while(i <= k)
+  while(i <= mid)
   {
-    b[x++] = arr[i++];
+    temp[x++] = arr[i++];
   }
-  while(j <= r)
+  while(j <= high)
   {
-    b[x++] = arr[j++];
+    temp[x++] = arr[j++];
   }
-  for(i = l;i <= r;i++)
+
+  for(i = low;i <= high;i++)
   {
-    arr[i] = b[i];
+    arr[i] = temp[i];
   }
 }
 
@@ -41,17 +42,16 @@ void merge(int arr[],int l,int k,int r)
 
 
 
-void mergesort(int arr[],int l,int r)
+void mergesort(int arr[],int low,int high)
 {
-  if(l != r)
+  if(low != high)
   {
-    int k = (l + r)/2;
-    mergesort(arr, l, k);
-    mergesort(arr,k+1,r);
-    merge(arr,l,k,r);
+    int mid = (low + high)/2;
+    mergesort(arr, low, mid);
+    mergesort(arr, mid + 1, high);
+    merge(arr,low,mid,high);
   }
 }
-
 
 
 
