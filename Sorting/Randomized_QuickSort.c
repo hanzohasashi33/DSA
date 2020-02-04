@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-//#define swap(x,y) int t=x;x=y;y=t;
 
 void swap(int *a,int *b)
 {
