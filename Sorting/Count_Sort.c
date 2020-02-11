@@ -21,11 +21,11 @@ int main()
   {
     if(arr[i] > max) max = arr[i];
   }
-
-  for(i = 0;i < max;i++)
+  memset (c, 0, max*sizeof(char));
+  /*for(i = 0;i < max;i++)
   {
     c[i] = 0;
-  }
+  }*/
 
   for(i = 0;i < n;i++)
   {
