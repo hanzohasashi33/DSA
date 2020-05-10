@@ -27,7 +27,7 @@ public:
   
     void addEdge(int u, int v, int weight); 
   
-    void shortestPath(int s); 
+    void shortestPath(int s,int d); 
 }; 
   
 Graph::Graph(int V) 
@@ -60,7 +60,7 @@ void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &Stack)
 } 
   
 
-void Graph::shortestPath(int s) 
+void Graph::shortestPath(int s,int d) 
 { 
     stack<int> Stack; 
     int dist[V]; 
@@ -99,29 +99,28 @@ void Graph::shortestPath(int s)
   
     // Print the calculated shortest distances 
     for (int i = 0; i < V; i++) 
-        (dist[i] == INF)? cout << "-1 ": cout << dist[i] << " "; 
+      if (i == d) 
+      {
+        (dist[i] == INF)? cout << "-1 ": cout << dist[i] ;
+        break;
+      } 
 } 
   
 // Driver program to test above functions 
 int main() 
 { 
-    // Create a graph given in the above diagram.  Here vertex numbers are 
-    // 0, 1, 2, 3, 4, 5 with following mappings: 
-    // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z 
-    Graph g(6); 
-    g.addEdge(0, 1, 5); 
-    g.addEdge(0, 2, 3); 
-    g.addEdge(1, 3, 6); 
-    g.addEdge(1, 2, 2); 
-    g.addEdge(2, 4, 4); 
-    g.addEdge(2, 5, 2); 
-    g.addEdge(2, 3, 7); 
-    g.addEdge(3, 4, -1); 
-    g.addEdge(4, 5, -2); 
-  
-    int s = 1; 
-    cout << "Following are shortest distances from source " << s <<"\n"; 
-    g.shortestPath(s); 
-  
-    return 0; 
+  int n,m;
+  cin >> n >> m;
+  Graph g(n);
+
+  for(int i = 0;i < m;i++)
+  {
+    int x,y,w;
+    cin >> x >> y >> w;
+    g.addEdge(x-1,y-1,w);
+  }
+  int source,destination;
+  cin >> source >> destination;
+  g.shortestPath(source-1,destination-1);
+  return 0; 
 } 
